@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker! Feito Por Caio</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/Caito931/Codigo-Javastico/refs/heads/main/php-e.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="titulo">Php Clicker!</h1>
+    
+    <div id="pr">
+        <label id="el">Elefantes: 0 </label>
+        <label id="elc">Elefantes Por Clique: 1 </label>
+    </div>
+   
+    <div id="btncontainer">
+        <div id="btne">
+            <button id="elefanteBtn">
+            <img id="elefanteImg" src="https://raw.githubusercontent.com/Caito931/Codigo-Javastico/refs/heads/main/php-e.png" alt="Elefante PHP">
+            </button>
+        </div>
+        
+        <button id="diminuirBtn" class="buttons">Diminuir (-)</button>
+        <button id="resetarBtn" class="buttons">Resetar (= 0)</button>
+        
+        <div id="upcontainer">
+            <button id="openshop" class="OP">Open Shop</button>
+            
+            <div class="upgrade-buttons">
+                <button id="upBtn1" class="UPbuttons" value="50">Ganhar Upgrade (50)</button>
+                <button id="upBtn2" class="UPbuttons" value="100">Ganhar Upgrade (100)</button>
+                <button id="upBtn3" class="UPbuttons" value="500">Ganhar Upgrade (500)</button>
+                <button id="upBtn4" class="UPbuttons" value="1000">Ganhar Upgrade (1k)</button>
+                <button id="upBtn5" class="UPbuttons" value="5000">Ganhar Upgrade (5k)</button>
+                <button id="upBtn6" class="UPbuttons" value="10000">Ganhar Upgrade (10k)</button>
+                <button id="upBtn7" class="UPbuttons" value="20000">Ganhar Upgrade (20k)</button>
+                <button id="upBtn8" class="UPbuttons" value="50000">Ganhar Upgrade (50k)</button>
+                <button id="upBtn9" class="UPbuttons" value="100000">Ganhar Upgrade (100k)</button>
+                <button id="upBtn10" class="UPbuttons" value="500000">Ganhar Upgrade (500k)</button>
+            </div>
+        </div>
+    </div>
+   
+    <div id="estdiv">
+        <p id="totalcliques" class="estc">BLA</p>
+        <p id="dinheirogasto" class="estc">BLA</p>
+        <p id="tempogasto" class="estc">BLA</p>
+        <button id="versom" class="buttons">Desativar som 🔇</button>
+        <button id="vers" class="buttons">Ver Estatisticas</button>
+    </div><br><br>
+    
+    <div id="achievements" class="achievements hidden">
+        <h2 style="margin-left: 30px;">Conquistas</h2>
+        <ul id="achievement-list">
+          <li id="ach-1" class="locked">Clique 10 vezes (0/10)</li>
+          <li id="ach-2" class="locked">Clique 100 vezes (0/100)</li>
+          <li id="ach-3" class="locked">Gaste 1000 elefantes (0/1000)</li>
+          <li id="ach-4" class="locked">Gaste 10.000 elefantes (0/10000)</li>
+          <li id="ach-5" class="locked">Tenha todos os upgrades (0/10)</li>
+        </ul>
+        <h2 style="margin-left: 30px;" id="vpej"></h2>
+        <button onclick="closeAchievements()">Fechar</button>
+      </div>
+
+    <footer>
+        <h4 id="mbb">&copy 2024 Caio Victor</h4>
+    </footer>
+    
+    <audio id="mySound">
+        <source src="Freesound - mouse clicks2.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+    </audio>
+
+    <script>
+        const diminuirBtn = document.getElementById("diminuirBtn");
+        const resetarBtn = document.getElementById("resetarBtn");
+        const elefanteBtn = document.getElementById("elefanteBtn"); 
+        const el = document.getElementById("el");
+        const verestatisticas = document.getElementById("vers");
+        const versom = document.getElementById("versom")
+        let count = 0;
+        let countc = 1;
+        let ccount = 0;
+        let ttempogasto = 0;
+        let vpc = 0;
+        let booleanversom = true;
+
+        setInterval(() => {
+            ttempogasto++;
+        }, 1000); // 1000 ms = 1 s
+
+        versom.onclick = function() {
+            booleanversom = !booleanversom
+            if(booleanversom == false) {
+            document.getElementById("versom").textContent = `Ativar som 🔉`
+            console.log(booleanversom);
+            }else if(booleanversom == true) {
+            document.getElementById("versom").textContent = `Desativar som 🔇`
+            console.log(booleanversom);
+            }
+        }
+
+        // Clique no elefante para aumentar os pontos
+        elefanteBtn.onclick = function() {
+            el.textContent = `Elefantes: ${count += countc}`;
+            ccount++;
+            totalClicks++; // Atualiza total de cliques
+            updateAchievements(); // Atualiza conquistas a cada clique
+        }
+
+        // Ver Estatisticas
+        verestatisticas.onclick = function() {
+            document.getElementById("totalcliques").textContent = `Total De Cliques: ${ccount.toLocaleString('pt-BR')}`;
+            document.getElementById("dinheirogasto").textContent = `Total De Tempo Gasto: ${ttempogasto.toLocaleString('pt-BR')} Segundos`;
+            document.getElementById("tempogasto").textContent = `Total Elefantes Gastos: ${vpc.toLocaleString('pt-BR')}`;
+        }
+
+        // Diminui os pontos
+        diminuirBtn.onclick = function() {
+            el.textContent = `Elefantes: ${count -= countc}`;
+        }
+
+        // Reseta os pontos para zero
+        resetarBtn.onclick = function() {
+            count = 0;
+            el.textContent = `Elefantes: ${count}`;
+        }
+
+        // Configuração dos upgrades
+        const upgrades = [
+            { button: document.getElementById("upBtn1"), value: 50, newCountC: 5 },
+            { button: document.getElementById("upBtn2"), value: 100, newCountC: 10 },
+            { button: document.getElementById("upBtn3"), value: 500, newCountC: 25 },
+            { button: document.getElementById("upBtn4"), value: 1000, newCountC: 50 },
+            { button: document.getElementById("upBtn5"), value: 5000, newCountC: 100 },
+            { button: document.getElementById("upBtn6"), value: 10000, newCountC: 200 },
+            { button: document.getElementById("upBtn7"), value: 20000, newCountC: 500 },
+            { button: document.getElementById("upBtn8"), value: 50000, newCountC: 1000 },
+            { button: document.getElementById("upBtn9"), value: 100000, newCountC: 5000 },
+            { button: document.getElementById("upBtn10"), value: 500000, newCountC: 10000 },
+        ];
+
+        // Função para aplicar o upgrade
+        function handleUpgrade(upgrade) {
+            if (count >= upgrade.value) {
+                countc = upgrade.newCountC;
+                count -= upgrade.value;
+                vpc += upgrade.value;
+                el.textContent = `Elefantes: ${count}`;
+                elc.textContent = `Elefantes Por Clique: ${countc}`;
+                upgrade.button.style.backgroundColor = "gray"; // Altera a cor
+                upgrade.button.disabled = true; // Desabilita o botão
+                upgrade.button.style.cursor = "not-allowed"; // Muda o cursor para indicar que não é clicável
+                upgradesOwned++; // Atualiza total de upgrades possuídos
+                updateAchievements(); // Atualiza conquistas após compra
+            }
+        }
+
+        upgrades.forEach(upgrade => {
+            upgrade.button.onclick = function() {
+                handleUpgrade(upgrade);
+            };
+        });
+
+        // Função para abrir/fechar a loja
+        const openshopBtn = document.getElementById("openshop");
+        let shopOpen = false; // Variável para rastrear se a loja está aberta
+
+        openshopBtn.onclick = function() {
+            const upgradeButtons = document.querySelectorAll(".UPbuttons");
+            shopOpen = !shopOpen; // Alterna o estado da loja
+
+            upgradeButtons.forEach(button => {
+                button.style.visibility = shopOpen ? "visible" : "hidden";  // Mostra ou esconde os botões
+                if (!shopOpen && button.disabled) {
+                    button.style.backgroundColor = "gray"; // Mantém a cor cinza
+                    button.style.cursor = "not-allowed"; // Mantém o cursor alterado
+                }
+            });
+        }
+
+
+        document.getElementById("elefanteBtn").addEventListener("click", function() {
+            if(booleanversom === true) {
+            var sound = document.getElementById("mySound");
+
+            // Reinicia o áudio
+            sound.currentTime = 0;
+
+            // Reproduz o som
+            sound.play().catch(function(error) {
+                console.log("Erro ao reproduzir som: ", error);
+            });
+        }
+        });
+
+        // Controle das conquistas
+        let totalClicks = 0;
+        let totalElephantsSpent = 0;
+        let upgradesOwned = 0;
+        let tc = 0;
+
+        //Função Para Atualizar as Conquistas e Mostra-lás
+        function updateAchievements() {
+            document.getElementById("ach-1").innerText = `Clique 10 vezes (${totalClicks} / 10)`;
+            document.getElementById("ach-2").innerText = `Clique 100 vezes (${totalClicks} / 100)`;
+            document.getElementById("ach-3").innerText = `Gaste 1000 elefantes (${totalElephantsSpent} / 1000)`;
+            document.getElementById("ach-3").innerText = `Gaste 10000 elefantes (${totalElephantsSpent} / 10000)`;
+            document.getElementById("ach-5").innerText = `Tenha todos os upgrades (${upgradesOwned} / 10)`;
+            
+            // Clique 10 vezes
+            if (totalClicks >= 10) {
+                document.getElementById("ach-1").classList.remove("locked");
+                document.getElementById("ach-1").classList.add("unlocked");
+                document.getElementById("ach-1").innerText = "Clique 10 vezes (Concluído)";
+                tc = tc + 1;
+            }
+
+            // Clique 100 vezes
+            if (totalClicks >= 100) {
+                document.getElementById("ach-2").classList.remove("locked");
+                document.getElementById("ach-2").classList.add("unlocked");
+                document.getElementById("ach-2").innerText = "Clique 100 vezes (Concluído)";
+                tc = tc + 1;
+            }
+
+            // Gaste 1000 elefantes
+            if (vpc >= 1000) {
+                document.getElementById("ach-3").classList.remove("locked");
+                document.getElementById("ach-3").classList.add("unlocked");
+                document.getElementById("ach-3").innerText = "Gaste 1000 elefantes (Concluído)";
+                tc = tc + 1;
+            }
+
+            // Gaste 10.000 elefantes
+            if (vpc >= 10000) {
+                document.getElementById("ach-4").classList.remove("locked");
+                document.getElementById("ach-4").classList.add("unlocked");
+                document.getElementById("ach-4").innerText = "Gaste 10.000 elefantes (Concluído)";
+                tc = tc + 1;
+            }
+
+            // Tenha todos os upgrades
+            if (upgradesOwned >= 10) {
+                document.getElementById("ach-5").classList.remove("locked");
+                document.getElementById("ach-5").classList.add("unlocked");
+                document.getElementById("ach-5").innerText = "Tenha todos os upgrades (Concluído)";
+                document.getElementById("vpej").textContent = "⭐Parabéns Você Platinou Este Jogo!⭐";
+                tc = tc + 1;
+            }
+            if(tc >= 5) {
+                document.getElementById("titulo").textContent = "⭐Php Clicker!⭐";
+            }
+        }
+
+        function openAchievements() {
+            document.getElementById("achievements").classList.remove("hidden");
+        }
+
+        function closeAchievements() {
+            document.getElementById("achievements").classList.add("hidden");
+        }
+
+    </script>
+    
+    <style>
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: rgb(119, 145, 249);
+            text-align: center;
+            font-size: 4vw; /* Tamanho responsivo */
+            margin-top: 0;
+        }
+
+        .estc {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        #estdiv {
+            text-align: right;
+        }
+
+        #pr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #el {
+            font-size: 3em; /* Tamanho responsivo */
+            text-align: center;
+        }
+
+        #btncontainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #btne {
+            text-align: center;
+        }
+
+        #elefanteBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #elefanteImg {
+            width: 40vw; /* Tamanho responsivo */
+            max-width: 200px; /* Limite máximo */
+            transition: transform 0.2s;
+        }
+
+        #elefanteImg:active {
+            transform: scale(0.9);
+        }
+
+        .buttons, .UPbuttons, .OP {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #4f5b93;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.25s;
+            width: 80%; /* Largura padrão para botões */
+            max-width: 300px; /* Limite máximo */
+            margin: 10px 0; /* Espaçamento entre os botões */
+        }
+
+        .buttons:hover, .UPbuttons:hover, .OP:hover {
+            background-color: #3b436a;
+        }
+
+        .UPbuttons:disabled {
+            opacity: 0.6; /* Opacidade para indicar desabilitado */
+        }
+
+        footer {
+            text-align: center;
+            padding: 5px;
+            background-color: #ccc;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        h4 {
+            margin: 0;
+        }
+        #achievement-list {
+            margin-left: 10px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 5vw;
+            }
+            #el {
+                font-size: 4em;
+            }
+            #elefanteImg {
+                width: 60vw;
+            }
+            .buttons, .UPbuttons, .OP {
+                font-size: 1.2em;
+            }
+            #openshop, .UPbuttons {
+                margin-left: 76px;
+            }
+            #btncontainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    </style>
+
+</body>
+</html>
