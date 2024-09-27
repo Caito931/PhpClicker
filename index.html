@@ -200,7 +200,6 @@
         let totalClicks = 0;
         let totalElephantsSpent = 0;
         let upgradesOwned = 0;
-        let tc = 0;
 
         //Função Para Atualizar as Conquistas e Mostra-lás
         function updateAchievements() {
@@ -215,7 +214,6 @@
                 document.getElementById("ach-1").classList.remove("locked");
                 document.getElementById("ach-1").classList.add("unlocked");
                 document.getElementById("ach-1").innerText = "Clique 10 vezes (Concluído)";
-                tc = tc + 1;
             }
 
             // Clique 100 vezes
@@ -223,7 +221,6 @@
                 document.getElementById("ach-2").classList.remove("locked");
                 document.getElementById("ach-2").classList.add("unlocked");
                 document.getElementById("ach-2").innerText = "Clique 100 vezes (Concluído)";
-                tc = tc + 1;
             }
 
             // Gaste 1000 elefantes
@@ -231,7 +228,6 @@
                 document.getElementById("ach-3").classList.remove("locked");
                 document.getElementById("ach-3").classList.add("unlocked");
                 document.getElementById("ach-3").innerText = "Gaste 1000 elefantes (Concluído)";
-                tc = tc + 1;
             }
 
             // Gaste 10.000 elefantes
@@ -239,7 +235,6 @@
                 document.getElementById("ach-4").classList.remove("locked");
                 document.getElementById("ach-4").classList.add("unlocked");
                 document.getElementById("ach-4").innerText = "Gaste 10.000 elefantes (Concluído)";
-                tc = tc + 1;
             }
 
             // Tenha todos os upgrades
@@ -248,9 +243,6 @@
                 document.getElementById("ach-5").classList.add("unlocked");
                 document.getElementById("ach-5").innerText = "Tenha todos os upgrades (Concluído)";
                 document.getElementById("vpej").textContent = "⭐Parabéns Você Platinou Este Jogo!⭐";
-                tc = tc + 1;
-            }
-            if(tc >= 5) {
                 document.getElementById("titulo").textContent = "⭐Php Clicker!⭐";
             }
         }
