@@ -14,7 +14,8 @@
         <label id="el">Elefantes: 0 </label>
         <label id="elc">Elefantes Por Clique: 1 </label>
     </div>
-   
+
+   <!--Container Principal-->
     <div id="btncontainer">
         <div id="btne">
             <button id="elefanteBtn">
@@ -154,6 +155,7 @@
                 upgrade.button.disabled = true; // Desabilita o botão
                 upgrade.button.style.cursor = "not-allowed"; // Muda o cursor para indicar que não é clicável
                 upgradesOwned++; // Atualiza total de upgrades possuídos
+                totalElephantsSpent += upgrade.value
                 updateAchievements(); // Atualiza conquistas após compra
             }
         }
@@ -206,42 +208,42 @@
             document.getElementById("ach-1").innerText = `Clique 10 vezes (${totalClicks} / 10)`;
             document.getElementById("ach-2").innerText = `Clique 100 vezes (${totalClicks} / 100)`;
             document.getElementById("ach-3").innerText = `Gaste 1000 elefantes (${totalElephantsSpent} / 1000)`;
-            document.getElementById("ach-3").innerText = `Gaste 10000 elefantes (${totalElephantsSpent} / 10000)`;
+            document.getElementById("ach-4").innerText = `Gaste 10000 elefantes (${totalElephantsSpent} / 10000)`;
             document.getElementById("ach-5").innerText = `Tenha todos os upgrades (${upgradesOwned} / 10)`;
             
             // Clique 10 vezes
             if (totalClicks >= 10) {
                 document.getElementById("ach-1").classList.remove("locked");
                 document.getElementById("ach-1").classList.add("unlocked");
-                document.getElementById("ach-1").innerText = "Clique 10 vezes (Concluído)";
+                document.getElementById("ach-1").innerText = "Clique 10 vezes (Concluído ✅)";
             }
 
             // Clique 100 vezes
             if (totalClicks >= 100) {
                 document.getElementById("ach-2").classList.remove("locked");
                 document.getElementById("ach-2").classList.add("unlocked");
-                document.getElementById("ach-2").innerText = "Clique 100 vezes (Concluído)";
+                document.getElementById("ach-2").innerText = "Clique 100 vezes (Concluído ✅)";
             }
 
             // Gaste 1000 elefantes
             if (vpc >= 1000) {
                 document.getElementById("ach-3").classList.remove("locked");
                 document.getElementById("ach-3").classList.add("unlocked");
-                document.getElementById("ach-3").innerText = "Gaste 1000 elefantes (Concluído)";
+                document.getElementById("ach-3").innerText = "Gaste 1000 elefantes (Concluído ✅)";
             }
 
             // Gaste 10.000 elefantes
             if (vpc >= 10000) {
                 document.getElementById("ach-4").classList.remove("locked");
                 document.getElementById("ach-4").classList.add("unlocked");
-                document.getElementById("ach-4").innerText = "Gaste 10.000 elefantes (Concluído)";
+                document.getElementById("ach-4").innerText = "Gaste 10.000 elefantes (Concluído ✅)";
             }
 
             // Tenha todos os upgrades
             if (upgradesOwned >= 10) {
                 document.getElementById("ach-5").classList.remove("locked");
                 document.getElementById("ach-5").classList.add("unlocked");
-                document.getElementById("ach-5").innerText = "Tenha todos os upgrades (Concluído)";
+                document.getElementById("ach-5").innerText = "Tenha todos os upgrades (Concluído ✅)";
                 document.getElementById("vpej").textContent = "⭐Parabéns Você Platinou Este Jogo!⭐";
                 document.getElementById("titulo").textContent = "⭐Php Clicker!⭐";
             }
