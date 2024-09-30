@@ -1,6 +1,6 @@
 # Php Clicker
 
-Link Do Jogo:https://caito931.github.io/PhpClicker/
+- 🔗 Link Do Jogo:https://caito931.github.io/PhpClicker/
 
 # 1-Como Jogar
 
