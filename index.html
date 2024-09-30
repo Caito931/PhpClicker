@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <h1 id="titulo">Php Clicker!</h1>
     
     <div id="pr">
         <label id="el">Elefantes: 0 </label>
         <label id="elc">Elefantes Por Clique: 1 </label>
+        <label id="els">Elefantes Por Segundo: 0 </label>
     </div>
 
    <!--Container Principal-->
@@ -26,20 +28,26 @@
         <button id="diminuirBtn" class="buttons">Diminuir (-)</button>
         <button id="resetarBtn" class="buttons">Resetar (= 0)</button>
         
-        <div id="upcontainer">
-            <button id="openshop" class="OP">Open Shop</button>
+        <div id="upcontainer"><br><br><br><br>
             
             <div class="upgrade-buttons">
-                <button id="upBtn1" class="UPbuttons" value="50">Ganhar Upgrade (50)</button>
-                <button id="upBtn2" class="UPbuttons" value="100">Ganhar Upgrade (100)</button>
-                <button id="upBtn3" class="UPbuttons" value="500">Ganhar Upgrade (500)</button>
-                <button id="upBtn4" class="UPbuttons" value="1000">Ganhar Upgrade (1k)</button>
-                <button id="upBtn5" class="UPbuttons" value="5000">Ganhar Upgrade (5k)</button>
-                <button id="upBtn6" class="UPbuttons" value="10000">Ganhar Upgrade (10k)</button>
-                <button id="upBtn7" class="UPbuttons" value="20000">Ganhar Upgrade (20k)</button>
-                <button id="upBtn8" class="UPbuttons" value="50000">Ganhar Upgrade (50k)</button>
-                <button id="upBtn9" class="UPbuttons" value="100000">Ganhar Upgrade (100k)</button>
-                <button id="upBtn10" class="UPbuttons" value="500000">Ganhar Upgrade (500k)</button>
+                <h1>Upgrades De Clique</h1>
+                <button id="upBtn1C" class="UPbuttons" value="50">Poder da Tromba (50 🐘👆)</button>
+                <button id="upBtn2C" class="UPbuttons" value="100">Passos Pesados (100 🐘👆)</button>
+                <button id="upBtn3C" class="UPbuttons" value="500">Banquete Elefantástico (500 🐘👆)</button>
+                <button id="upBtn4C" class="UPbuttons" value="1000">Força da Manada (1k 🐘👆)</button>
+                <button id="upBtn5C" class="UPbuttons" value="5000">Ritmo da Floresta (5k 🐘👆)</button>
+                <button id="upBtn6C" class="UPbuttons" value="10000">Caminho da Sabedoria (10k 🐘👆)</button>
+                <button id="upBtn7C" class="UPbuttons" value="20000">Eco da Natureza (20k 🐘👆)</button>
+                <button id="upBtn8C" class="UPbuttons" value="50000">Reinado do Elefante (50k 🐘👆)</button>
+                <button id="upBtn9C" class="UPbuttons" value="100000">Proteção da Pele (100k 🐘👆)</button>
+                <button id="upBtn10C" class="UPbuttons" value="500000">Sorriso do Elefante (500k 🐘👆)</button><br><br><br><br>
+                <h1>Upgrades De Tempo</h1>
+                <button id="upBtn1S" class="UPbuttons" value="50">Elefante Na Ativa (50 🐘🕗)</button>
+                <button id="upBtn2S" class="UPbuttons" value="500">Elefante Coelho (500 🐘🕗)</button>
+                <button id="upBtn3S" class="UPbuttons" value="5000">Elefante Cheetah (5k 🐘🕗)</button>
+                <button id="upBtn4S" class="UPbuttons" value="100000">Elefante Caça (100k 🐘🕗)</button>
+                <button id="upBtn5S" class="UPbuttons" value="250000">Elefante Flash (250k 🐘🕗)</button>
             </div>
         </div>
     </div>
@@ -48,12 +56,15 @@
         <p id="totalcliques" class="estc">BLA</p>
         <p id="dinheirogasto" class="estc">BLA</p>
         <p id="tempogasto" class="estc">BLA</p>
+        <p id="atualizacoes" class="estc">BLA</p>
+        <p id="atualizacoes2" class="estc">BLA</p>
         <button id="versom" class="buttons">Desativar som 🔇</button>
-        <button id="vers" class="buttons">Ver Estatisticas</button>
+        <button id="changelogs" class="buttons">Atualizações 😎🚨</button>
+        <button id="vers" class="buttons">Ver Estatisticas 📋</button>
     </div><br><br>
     
     <div id="achievements" class="achievements hidden">
-        <h2 style="margin-left: 30px;">Conquistas 🏅</h2>
+        <h2 style="margin-left: 30px;">Conquistas 🏆</h2>
         <ul id="achievement-list">
           <li id="ach-1" class="locked">Clique 10 vezes (0/10)</li>
           <li id="ach-2" class="locked">Clique 100 vezes (0/100)</li>
@@ -79,18 +90,29 @@
         const resetarBtn = document.getElementById("resetarBtn");
         const elefanteBtn = document.getElementById("elefanteBtn"); 
         const el = document.getElementById("el");
+        const els = document.getElementById("els");
         const verestatisticas = document.getElementById("vers");
         const versom = document.getElementById("versom")
+        const verchangelogsBtn = document.getElementById("changelogs");
         let count = 0;
         let countc = 1;
         let ccount = 0;
         let ttempogasto = 0;
         let vpc = 0;
         let booleanversom = true;
+        let countss = 0;
 
+        // Inicia o intervalo para incrementar o tempo gasto
         setInterval(() => {
             ttempogasto++;
+            el.textContent = `Elefantes: ${count += countss}`; // Atualiza o número de elefantes a cada segundo
         }, 1000); // 1000 ms = 1 s
+
+        function updateIntervalo() {
+        setInterval(() => {
+            el.textContent = `Elefantes: ${count += countss}`;
+        }, 1000)
+    }
 
         versom.onclick = function() {
             booleanversom = !booleanversom
@@ -109,6 +131,12 @@
             ccount++;
             totalClicks++; // Atualiza total de cliques
             updateAchievements(); // Atualiza conquistas a cada clique
+        }
+
+        //Ver Atualizações
+        verchangelogsBtn.onclick = function() {
+            atualizacoes.textContent = `Data De Lançamento: quinta-feira, 26 de setembro de 2024`
+            atualizacoes2.textContent = `Ultima Atualização: domingo, 30 de setembro de 2024`
         }
 
         // Ver Estatisticas
@@ -131,29 +159,45 @@
 
         // Configuração dos upgrades
         const upgrades = [
-            { button: document.getElementById("upBtn1"), value: 50, newCountC: 5 },
-            { button: document.getElementById("upBtn2"), value: 100, newCountC: 10 },
-            { button: document.getElementById("upBtn3"), value: 500, newCountC: 25 },
-            { button: document.getElementById("upBtn4"), value: 1000, newCountC: 50 },
-            { button: document.getElementById("upBtn5"), value: 5000, newCountC: 100 },
-            { button: document.getElementById("upBtn6"), value: 10000, newCountC: 200 },
-            { button: document.getElementById("upBtn7"), value: 20000, newCountC: 500 },
-            { button: document.getElementById("upBtn8"), value: 50000, newCountC: 1000 },
-            { button: document.getElementById("upBtn9"), value: 100000, newCountC: 5000 },
-            { button: document.getElementById("upBtn10"), value: 500000, newCountC: 10000 },
+            { button: document.getElementById("upBtn1C"), value: 50, newCountC: 5, newCountS: 0 },
+            { button: document.getElementById("upBtn2C"), value: 100, newCountC: 10, newCountS: 0 },
+            { button: document.getElementById("upBtn3C"), value: 500, newCountC: 25, newCountS: 0 },
+            { button: document.getElementById("upBtn4C"), value: 1000, newCountC: 50, newCountS: 0 },
+            { button: document.getElementById("upBtn5C"), value: 5000, newCountC: 100, newCountS: 0 },
+            { button: document.getElementById("upBtn6C"), value: 10000, newCountC: 200, newCountS: 0 },
+            { button: document.getElementById("upBtn7C"), value: 20000, newCountC: 500, newCountS: 0 },
+            { button: document.getElementById("upBtn8C"), value: 50000, newCountC: 1000, newCountS: 0 },
+            { button: document.getElementById("upBtn9C"), value: 100000, newCountC: 5000, newCountS: 0 },
+            { button: document.getElementById("upBtn10C"), value: 500000, newCountC: 10000, newCountS: 0 },
+            { button: document.getElementById("upBtn1S"), value: 50, newCountC: 0, newCountS: 10 },
+            { button: document.getElementById("upBtn2S"), value: 500, newCountC: 0, newCountS: 100 },
+            { button: document.getElementById("upBtn3S"), value: 5000, newCountC: 0, newCountS: 500 },
+            { button: document.getElementById("upBtn4S"), value: 100000, newCountC: 0, newCountS: 1000 },
+            { button: document.getElementById("upBtn5"), value: 250000, newCountC: 0, newCountS: 50000},
         ];
-
+       
         // Função para aplicar o upgrade
         function handleUpgrade(upgrade) {
             if (count >= upgrade.value) {
-                countc = upgrade.newCountC;
-                count -= upgrade.value;
-                vpc += upgrade.value;
+                // Verifica se o upgrade é de cliques ou de segundos
+                if (upgrade.newCountC > 0) {
+                    countc = upgrade.newCountC; // Atualiza Elefantes por Clique
+                }
+                
+                if (upgrade.newCountS > 0) {
+                    countss += upgrade.newCountS; // Adiciona à contagem por segundo
+                }
+
+                count -= upgrade.value; // Diminui a contagem de Elefantes
+                vpc += upgrade.value; // Adiciona ao total de Elefantes gastos
                 el.textContent = `Elefantes: ${count}`;
                 elc.textContent = `Elefantes Por Clique: ${countc}`;
-                upgrade.button.style.backgroundColor = "gray"; // Altera a cor
-                upgrade.button.disabled = true; // Desabilita o botão
-                upgrade.button.style.cursor = "not-allowed"; // Muda o cursor para indicar que não é clicável
+                els.textContent = `Elefantes Por Segundo: ${countss}`;
+
+                // Desabilita o botão e altera a cor
+                upgrade.button.style.backgroundColor = "gray"; 
+                upgrade.button.disabled = true; 
+                upgrade.button.style.cursor = "not-allowed"; 
                 upgradesOwned++; // Atualiza total de upgrades possuídos
                 totalElephantsSpent += upgrade.value
                 updateAchievements(); // Atualiza conquistas após compra
@@ -167,21 +211,21 @@
         });
 
         // Função para abrir/fechar a loja
-        const openshopBtn = document.getElementById("openshop");
-        let shopOpen = false; // Variável para rastrear se a loja está aberta
+        //const openshopBtn = document.getElementById("openshop");
+        //let shopOpen = false; // Variável para rastrear se a loja está aberta
 
-        openshopBtn.onclick = function() {
-            const upgradeButtons = document.querySelectorAll(".UPbuttons");
-            shopOpen = !shopOpen; // Alterna o estado da loja
+        //openshopBtn.onclick = function() {
+            //const upgradeButtons = document.querySelectorAll(".UPbuttons");
+            //shopOpen = !shopOpen; // Alterna o estado da loja
 
-            upgradeButtons.forEach(button => {
-                button.style.visibility = shopOpen ? "visible" : "hidden";  // Mostra ou esconde os botões
-                if (!shopOpen && button.disabled) {
-                    button.style.backgroundColor = "gray"; // Mantém a cor cinza
-                    button.style.cursor = "not-allowed"; // Mantém o cursor alterado
-                }
-            });
-        }
+            //upgradeButtons.forEach(button => {
+                //button.style.visibility = shopOpen ? "visible" : "hidden";  // Mostra ou esconde os botões
+                //if (!shopOpen && button.disabled) {
+                    //button.style.backgroundColor = "gray"; // Mantém a cor cinza
+                    //button.style.cursor = "not-allowed"; // Mantém o cursor alterado
+                //}
+           //});
+        //}
 
 
         document.getElementById("elefanteBtn").addEventListener("click", function() {
@@ -223,6 +267,7 @@
                 document.getElementById("ach-2").classList.remove("locked");
                 document.getElementById("ach-2").classList.add("unlocked");
                 document.getElementById("ach-2").innerText = "Clique 100 vezes (Concluído ✅)";
+
             }
 
             // Gaste 1000 elefantes
